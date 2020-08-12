@@ -1,0 +1,149 @@
+{% extends 'Ecommerce/base.html' %}
+{% load static %}
+{% block content%}
+
+{#{% if order.cart_total_items > 0 %}#}
+    <div class="container-fluid row" id="Checkout">
+
+        {% if order.cart_total_items > 0 %}
+            <div class="container col-md-6" id="Checkout_Form">
+                <h4>Shipping/ billing details:</h4>
+                <form class="container col-8" id="checkout_form_box" method="POST" action="{% url 'checkout' %}">
+                    {% csrf_token %}
+
+                    <div class="form row">
+                        <div class="form-group" style="margin-top:5px; margin-left:10px; margin-right:10px"}>{{ form.address_type.label_tag }}</div>
+                        <div class="form-group">{{ form.address_type }}</div>
+                    </div>
+                    <div class="form row">
+                        <div class="form-group col-6">{{ form.first_name }}</div>
+                        <div class="form-group col-6">{{ form.last_name }}</div>
+                    </div>
+                    <div class="form-group">{{ form.address_line_1 }}</div>
+                    <div class="form-group">{{ form.address_line_2 }}</div>
+                    <div class="form-row">
+                        <div class="form-group col-4">{{ form.postal_code }}</div>
+                        <div class="form-group col-4">{{ form.city }}</div>
+                        <div class="form-group col-4">{{ form.state }}</div>
+                    </div>
+                    <div class="form-group">{{ form.country }}</div>
+            </div>
+
+            <div class="container col-md-6" id="Checkout_Summary">
+                <h4>Summary:</h4>
+
+                <table class="table table-sm table-hover table-responsive-xs table-borderless col-lg-7" id="summary_table">
+                    <thead>
+                        <tr>
+                            <th scope="col" id="summary_product_column">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">In total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for orderproduct in orderproducts %}
+                            <tr>
+                                <td id="summary_product_column">{{ orderproduct.product.name }}</td>
+                                <td>{{ orderproduct.product.price }} €</td>
+                                <td>{{ orderproduct.quantity }}</td>
+                                <td>{{ orderproduct.product_total_price }} €</td>
+                            </tr>
+                        {% endfor %}
+                     </tbody>
+                </table>
+
+                <div class="container-fluid font-weight-bold" id="summary_short_summary">
+                    <h3>Order Total: <b>{{ order.cart_total_price }} €</b></h3>
+                </div>
+
+                <div>
+                    <button class="update-cart btn btn-primary d-none" id="btn_confirm_order">Confirm Order</button></a>
+                    <div class="container" id="form_question">
+                        <p>Want to change something? <a href ="{% url 'store' %}">Continue shopping</a></p>
+                    </div>
+                </form>
+                </div>
+            </div>
+        {% else %}
+            {% if user.is_authenticated %}
+                <div class="container-fluid" id="summary_short_summary">
+                    <div><h2>Your Cart is Empty.<h2></div>
+                    <div class="container" id="form_question">Want to add something? <a href ="{% url 'store' %}">Continue shopping</a></div>
+                </div>
+            {% else %}
+                <div class="container-fluid" id="summary_short_summary">
+                <div><h2>You are not logged in.<h2></div>
+                <div class="container" id="form_question">Want to use basket? <a href ="{% url 'login_view' %}">Login</a></div>
+            {% endif %}
+            </div>
+
+        {% endif %}
+    </div>
+
+
+    <script>
+        let cart_total_items = '{{ order.cart_total_items }}';
+
+        if (cart_total_items > 0) {
+            document.getElementById('btn_confirm_order').classList.remove('d-none');
+        };
+    </script>
+
+
+    <script>
+        let form = document.getElementById('checkout_form_box')
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault()
+            console.log('clicked: Place Order')
+            document.getElementById('btn_confirm_order').classList.add('d-none')
+            document.getElementById('form_question').classList.add('d-none')
+            document.getElementById('Checkout_Payment').classList.remove('d-none')
+        });
+    </script>
+
+
+    <div class="container d-none" id="Checkout_Payment">
+        <h4>Choose your payment method:</h4>
+
+        <!-- Set up a container element for the button -->
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ATRjCc_rZE2_U9kcD06n6n2GNzqBZNLljhOl74-HLUNYPBoXj4oQ22OvY2oWC4LTe1QemLOA-Xbyw2aP&currency=EUR&disable-funding=sofort"></script>
+    {# 'sb' zamieniamy na Client ID z Sanbox + dodajemy &disable.. + currency#}
+
+    <script>
+        let cart_total_price = '{{ order.cart_total_price }}'                                                           // added
+
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+           // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat(cart_total_price).toFixed(2)                                              // added
+                        }
+                    }]
+                });
+            },
+           // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    document.getElementById('checkout_form_box').submit()                                               // added
+                    // Show a success message to the buyer
+                    {#alert('Transaction completed by ' + details.payer.name.given_name + '!');#}
+                });
+            }
+      }).render('#paypal-button-container');
+        funding: {
+                    disallowed: [ paypal.FUNDING.Sofort ]
+                    }
+    </script>
+
+
+{% endblock %}
+

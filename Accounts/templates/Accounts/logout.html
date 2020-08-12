@@ -1,0 +1,9 @@
+{% extends 'Ecommerce/base.html' %}
+{% block content %}
+
+    <div class="container rounded border col-10" id="form_container">
+        <p>You've been Logged Out.</p>
+        <p><a href="{% url 'login_view' %}">Login</a> again.</p>
+    </div>
+
+{% endblock %}

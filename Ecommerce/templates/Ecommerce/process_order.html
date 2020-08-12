@@ -1,0 +1,13 @@
+{% extends 'Ecommerce/base.html' %}
+{% load static %}
+{% block content%}
+
+    <div class="container rounded border" id="process_order_container">
+
+    <h1>Thank you for your purchase.</h3><br><br>
+
+    <h6><p>Dear {{ request.user }},</p><br>
+        <p>Once your products have been packed, they will be sent to you immediately.</p><br>
+        <p>In case of any questions, please do not hesitate to <a href ="{% url 'store' %}">Contact us.</a></p><h6>
+
+{% endblock %}

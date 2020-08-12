@@ -1,0 +1,224 @@
+/*GENERAL*/
+
+#form_container {
+  width: 30%;
+
+  text-align: center;
+
+  margin-top: 100px;
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  background-color: #f8f9fa;
+}
+
+#process_order_container {
+  width: 50%;
+
+  text-align: left;
+
+  margin-top: 100px;
+
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  background-color: #f8f9fa;
+}
+
+#cart_total_items {
+  text-align: center;
+  line-height: 15px;
+}
+
+
+#cart_total_price {
+  text-align: center;
+  line-height: 15px;
+}
+
+
+/*BUTTONS*/
+#btn_new {
+  color: #fff;
+  background-color: #8A817C;
+  border-color: #8A817C;
+}
+
+#btn_continue{
+  color: #fff;
+  background-color: #8A817C;
+  border-color: #8A817C;
+}
+
+#btn_confirm_order{
+  color: #fff;
+  background-color: #8A817C;
+  border-color: #8A817C;
+}
+
+/* STORE */
+
+#Store {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+#Shop {
+  text-align: center;
+}
+
+#shop_product_box{
+  text-align: center;
+
+  width: auto;
+  height: auto;
+
+  padding-bottom: 75px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+#Cart {
+  text-align: center;
+}
+
+#cart_product_box {
+  text-align: center;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#cart_product_box_data {
+  text-align: left;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#cart_product_box_btns {
+  text-align: right;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#cart_short_summary {
+  text-align: center;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+/* CHECKOUT */
+
+#Checkout{
+  margin-top: 80px;
+  margin-bottom: 20px;
+  margin-left: 1px;
+}
+
+
+#Checkout_Form {
+  text-align: center;
+}
+
+#checkout_form_box {
+  text-align: left;
+
+  margin-top: 40px;
+}
+
+
+#Checkout_Summary {
+  text-align: center;
+}
+
+
+#summary_product_box {
+  margin-top: 20px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#summary_table {
+  margin-top: 15px;
+  margin-left: 170px;
+  margin-right: 170px;
+}
+
+#summary_product_column {
+  text-align: left;
+  /*padding-left: 80px;*/
+}
+
+#summary_short_summary {
+  text-align: center;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+#Checkout_Payment {
+  text-align: center;
+  margin-top: 60px;
+}
+
+#payment-info {
+  text-align: center;
+}
+
+
+/* HOME */
+
+#Home {
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  text-align: center;
+}
+
+.carousel-item{
+  height:300px;
+}
+.carousel-item img{
+  position: relative;
+}
+
+#home_content {
+  margin-top: 100px;
+}
+
+#address {}
+
+#social_media{
+  text-align: center;
+  margin-top: 50px;
+}
+
+#btn_sm {
+  width: 30%;
+  height: 30%;
+}

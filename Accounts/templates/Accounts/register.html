@@ -1,0 +1,25 @@
+{% extends 'Ecommerce/base.html' %}
+{% block content %}
+
+    <div class="container rounded border col-10" id="form_container">
+
+        <h2>User Registration</h2><br>
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            <div class="form-group">{{ form.username }}</div>
+            <div class="form-group">{{ form.password1 }}</div>
+            <div class="form-group">{{ form.password2 }}</div>
+            <div class="form-group">{{ form.email }}</div>
+
+            {{ form.errors }}
+
+            <input type="submit" class="btn btn-primary" id="btn_new" name="register" value="Register">
+
+            <div class="container"><p>Already have an account? <a href ="{% url 'login_view' %}">Sign in</a></p></div>
+        </form>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'Ecommerce/base.html' %}
+{% load static %}
+{% block content%}
+
+
+    <div id="Home">
+
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="3000">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'Ecommerce/images/slide_1.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Opinia:</h5>
+                        <p>""I love this place."</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'Ecommerce/images/slide_2.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Opinia:</h5>
+                        <p>"Zawsze zastanawiam się jak długo byłabym w stanie wytrzymać bez tych małż. Póki co: 1 dzień!"</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'Ecommerce/images/slide_3.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Opinia:</h5><p>"Muy buen lugar con buena comida."</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Pycha!</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="container-fluid" id="home_content">
+
+            <div class="container col-6" id="address">
+                <address>
+                    <h1><b>Tapas Bar</b></h1>
+                    <h2>..because we love good food.<h2><br>
+
+                    <h5>Calle Colon, 8, esc 8, p. 28<br>
+                        46015 Valencia, España <br>
+                        +34 965303030<br>
+                        tapas_bar@123.com</h5>
+                </address>
+            </div>
+
+            <div class="container col-xs-3 col-6 row" id="social_media">
+               <h1><a href="https://www.facebook.com/" class="fa fa-facebook col-xs-1 col-2" target="_blank"></a></h1>
+               <h1><a href="https://www.youtube.com/" class="fa fa-youtube col-xs-1 col-2" target="_blank"></a></h1>
+               <h1><a href="https://www.linkedin.com/" class="fa fa-linkedin col-xs-1 col-2" target="_blank"></a></h1>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
